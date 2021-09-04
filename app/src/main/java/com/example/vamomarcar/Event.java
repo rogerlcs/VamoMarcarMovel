@@ -1,6 +1,7 @@
 package com.example.vamomarcar;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -12,8 +13,8 @@ public class Event {
     private List<Usuario> participantes;
     private Date data;
     private List<Date> opcoesDataHora;
-    private long prazoVotacao;
-    private long prazoSugestao;
+    private Calendar prazoVotacao;
+    private Calendar prazoSugestao;
     private String local;
     private String status = "sugestao";
 
@@ -44,7 +45,7 @@ public class Event {
         this.local = local;
     }
 
-    public Event(int thumb, String title, String desc, List<Usuario> participantes, long prazoVotacao, long prazoSugestao, String local) {
+    public Event(int thumb, String title, String desc, List<Usuario> participantes, Calendar prazoVotacao, Calendar prazoSugestao, String local) {
         this.thumb = thumb;
         this.title = title;
         this.desc = desc;
@@ -114,19 +115,19 @@ public class Event {
         this.opcoesDataHora = opcoesDataHora;
     }
 
-    public long getPrazoVotacao() {
+    public Calendar getPrazoVotacao() {
         return prazoVotacao;
     }
 
-    public void setPrazoVotacao(long prazoVotacao) {
+    public void setPrazoVotacao(Calendar prazoVotacao) {
         this.prazoVotacao = prazoVotacao;
     }
 
-    public long getPrazoSugestao() {
+    public Calendar getPrazoSugestao() {
         return prazoSugestao;
     }
 
-    public void setPrazoSugestao(long prazoSugestao) {
+    public void setPrazoSugestao(Calendar prazoSugestao) {
         this.prazoSugestao = prazoSugestao;
     }
 

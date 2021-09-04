@@ -3,6 +3,7 @@ package com.example.vamomarcar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class AllEventsAdapter extends RecyclerView.Adapter {
     Context context;
     List<Event> eventos;
+
+     static String LOG_TAG_INFO = "Mili Seconds";
 
     public AllEventsAdapter(Context context, List<Event> eventos){
         this.context = context;
@@ -88,8 +93,12 @@ public class AllEventsAdapter extends RecyclerView.Adapter {
 
                 }
                 else if (evento.getStatus() == "sugestao"){
-                    long prazoSugestao = evento.getPrazoSugestao();
-                    CountDownTimer countDownTimer = new CountDownTimer(prazoSugestao,1000) {
+                    Calendar prazoSugestao = evento.getPrazoSugestao();
+                    Calendar atual = Calendar.getInstance();
+                    long prazoS = prazoSugestao.getTimeInMillis() - atual.getTimeInMillis();
+                    Log.i(LOG_TAG_INFO, String.valueOf(prazoS));
+                    Log.i(LOG_TAG_INFO, String.valueOf(prazoSugestao.getTimeInMillis()));
+                    CountDownTimer countDownTimer = new CountDownTimer(prazoS,1000) {
                         @Override
                         public void onTick(long millisUntilFinished) {
                             long hora = TimeUnit.MILLISECONDS.toHours(millisUntilFinished);
@@ -107,8 +116,10 @@ public class AllEventsAdapter extends RecyclerView.Adapter {
                     countDownTimer.start();
                 }
                 else {
-                    long prazoVotacao = evento.getPrazoVotacao();
-                    CountDownTimer countDownTimer = new CountDownTimer(prazoVotacao,1000) {
+                    Calendar prazoVotacao = evento.getPrazoVotacao();
+                    Calendar atual = Calendar.getInstance();
+                    long prazoV = prazoVotacao.getTimeInMillis() - atual.getTimeInMillis();
+                    CountDownTimer countDownTimer = new CountDownTimer(prazoV,1000) {
                         @Override
                         public void onTick(long millisUntilFinished) {
                             long hora = TimeUnit.MILLISECONDS.toHours(millisUntilFinished);

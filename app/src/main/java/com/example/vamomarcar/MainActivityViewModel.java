@@ -50,15 +50,12 @@ public class MainActivityViewModel extends ViewModel {
 
 
         Calendar calendar1 = Calendar.getInstance();
-        calendar1.set(2021,8,04,14,00);
-        Calendar atual = Calendar.getInstance();
-        long prazo1 = calendar1.getTimeInMillis() - atual.getTimeInMillis();
-        calendar1.set(2021,8,04,14,30);
-        long prazo2 = calendar1.getTimeInMillis() - atual.getTimeInMillis();
-        Log.i(LOG_TAG_INFO, String.valueOf(calendar1.getTimeInMillis()));
-        Log.i(LOG_TAG_INFO, String.valueOf(atual.getTimeInMillis()));
-        Log.i(LOG_TAG_INFO, String.valueOf(prazo1));
-        Log.i(LOG_TAG_INFO, String.valueOf(prazo2));
+        calendar1.set(2021,8,05,14,00);
+
+        Calendar prazo1 = calendar1;
+        calendar1.set(2021,8,05,14,30);
+        Calendar prazo2 = calendar1;
+
 
 
         Event evento1 = new Event(R.drawable.parque,"Parque da Cidade","Ida ao parque da cidade",usuarios, prazo1, prazo2,"Parque da Cidade");

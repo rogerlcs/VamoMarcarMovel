@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -56,8 +57,10 @@ public class MyEventsAdapter extends RecyclerView.Adapter {
 
         }
         else if (evento.getStatus() == "sugestao"){
-            long prazoSugestao = evento.getPrazoSugestao();
-            CountDownTimer countDownTimer = new CountDownTimer(prazoSugestao,1000) {
+            Calendar prazoSugestao = evento.getPrazoSugestao();
+            Calendar atual = Calendar.getInstance();
+            long prazoS = prazoSugestao.getTimeInMillis() - atual.getTimeInMillis();
+            CountDownTimer countDownTimer = new CountDownTimer(prazoS,1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     long hora = TimeUnit.MILLISECONDS.toHours(millisUntilFinished);
@@ -75,8 +78,10 @@ public class MyEventsAdapter extends RecyclerView.Adapter {
             countDownTimer.start();
         }
         else {
-            long prazoVotacao = evento.getPrazoVotacao();
-            CountDownTimer countDownTimer = new CountDownTimer(prazoVotacao,1000) {
+            Calendar prazoVotacao = evento.getPrazoVotacao();
+            Calendar atual = Calendar.getInstance();
+            long prazoV = prazoVotacao.getTimeInMillis() - atual.getTimeInMillis();
+            CountDownTimer countDownTimer = new CountDownTimer(prazoV,1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     long hora = TimeUnit.MILLISECONDS.toHours(millisUntilFinished);
