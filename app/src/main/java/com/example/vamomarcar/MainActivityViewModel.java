@@ -48,12 +48,17 @@ public class MainActivityViewModel extends ViewModel {
         usuarios.add(usuario3);
         usuarios.add(user);
 
+        user.addAmigo(usuario1);
+        user.addAmigo(usuario2);
+        user.addAmigo(usuario3);
+
+
 
         Calendar calendar1 = Calendar.getInstance();
-        calendar1.set(2021,8,05,14,00);
+        calendar1.set(2021,8,07,14,00);
 
         Calendar prazo1 = calendar1;
-        calendar1.set(2021,8,05,14,30);
+        calendar1.set(2021,8,07,14,30);
         Calendar prazo2 = calendar1;
 
 

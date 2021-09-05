@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VamoMarcarTest">
-        <activity android:name=".EventoMarcado"
+        <activity android:name=".CriarEventoActivity"></activity>
+        <activity
+            android:name=".EventoMarcado"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

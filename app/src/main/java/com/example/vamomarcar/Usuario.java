@@ -11,6 +11,7 @@ public class Usuario {
     private String cidade;
     private String estado;
     private List<Event> myEvents;
+    private List<Usuario> amigos = new ArrayList<>();
 
 
 
@@ -25,6 +26,14 @@ public class Usuario {
 
     public void addEvent(Event e){
         this.myEvents.add(e);
+    }
+
+    public void addAmigo(Usuario u){
+        this.amigos.add(u);
+    }
+
+    public List<Usuario> getAmigos(){
+        return this.amigos;
     }
 
     public List<Event> getMyEvents() {

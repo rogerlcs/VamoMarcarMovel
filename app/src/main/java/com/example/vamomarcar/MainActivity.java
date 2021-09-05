@@ -11,8 +11,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +26,15 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.tbHome);
         setSupportActionBar(toolbar);
+
+        FloatingActionButton fabAddNewEvent = findViewById(R.id.fabAddNewEvent);
+        fabAddNewEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, CriarEventoActivity.class);
+                startActivity(i);
+            }
+        });
 
         AllEventsFragment allEventsFragment = AllEventsFragment.newInstance();
         MyEventsFragment myEventsFragment = MyEventsFragment.newInstance();
