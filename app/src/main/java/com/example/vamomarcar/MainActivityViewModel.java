@@ -31,11 +31,11 @@ public class MainActivityViewModel extends ViewModel {
 
         calendar = Calendar.getInstance();
         calendar.set(2002,02,22);
-        Usuario usuario1 = new Usuario("Felipe",calendar,"dasdedaed","Serra","Espiríto Santo");
+        Usuario usuario1 = new Usuario("Felipe Santos",calendar,"dasdedaed","Serra","Espiríto Santo");
         calendar.set(1996,05,23);
-        Usuario usuario2 = new Usuario("Pedro",calendar,"dasdedaed","Vitória","Espiríto Santo");
+        Usuario usuario2 = new Usuario("Pedro Souza",calendar,"dasdedaed","Vitória","Espiríto Santo");
         calendar.set(2003,04,14);
-        Usuario usuario3 = new Usuario("Marcelo",calendar,"dasdedaed","Vila Velha","Espiríto Santo");
+        Usuario usuario3 = new Usuario("Marcelo Araújo",calendar,"dasdedaed","Vila Velha","Espiríto Santo");
         List<Usuario> usuarios = new ArrayList<>();
 
 
@@ -67,7 +67,16 @@ public class MainActivityViewModel extends ViewModel {
         evento2.setStatus("votacao");
         this.user.addEvent(evento2);
         Event evento3 = new Event(R.drawable.pedradacebola,"Pedra da Cebola","Ida a Pedra da Cebola",usuarios, prazo1, prazo2, "Pedra da cebola - Vitória");
-        Event evento4 = new Event(R.drawable.parque,"Praia","Ida a praia",usuarios, prazo1, prazo2, "Praia de Camburia");
+        Topico topico1 = new Topico(calendar1);
+        Topico topico2 = new Topico(calendar1);
+        Topico topico3 = new Topico(calendar1);
+        Topico topico4 = new Topico(calendar1);
+        evento3.addOpcoesDataHora(topico1);
+        evento3.addOpcoesDataHora(topico2);
+        evento3.addOpcoesDataHora(topico3);
+        evento3.addOpcoesDataHora(topico4);
+
+        Event evento4 = new Event(R.drawable.praia,"Praia","Ida a praia",usuarios, prazo1, prazo2, "Praia de Camburia");
         evento4.setData(calendar1.getTime());
         evento4.setType(1);
 

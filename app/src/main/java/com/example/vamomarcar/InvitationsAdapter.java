@@ -27,28 +27,28 @@ public class InvitationsAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.event_item_invite, parent, false);
+        View view = layoutInflater.inflate(R.layout.invite_item, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull  RecyclerView.ViewHolder holder, int position) {
         Event evento = eventos.get(0);
-        ImageView imageView = holder.itemView.findViewById(R.id.imvPhotoEv);
+        ImageView imageView = holder.itemView.findViewById(R.id.imvPhotoEvI);
         imageView.setImageResource(evento.getThumb());
 
-        TextView nome = holder.itemView.findViewById(R.id.tvTitle);
+        TextView nome = holder.itemView.findViewById(R.id.tvTitleI);
         nome.setText(evento.getTitle());
 
-        TextView desc = holder.itemView.findViewById(R.id.tvDesc);
+        TextView desc = holder.itemView.findViewById(R.id.tvDescI);
         desc.setText(evento.getDesc());
 
-        TextView participants = holder.itemView.findViewById(R.id.tvParticipants);
+        TextView participants = holder.itemView.findViewById(R.id.tvParticipantsI);
         participants.setText(String.valueOf(evento.getTotalParticipantes()) + " Participantes");
-        TextView data = holder.itemView.findViewById(R.id.tvDate);
+        TextView data = holder.itemView.findViewById(R.id.tvDateI);
 
 
-        TextView local = holder.itemView.findViewById(R.id.tvLocation);
+        TextView local = holder.itemView.findViewById(R.id.tvLocationI);
         local.setText("Local: " + evento.getLocal());
     }
 

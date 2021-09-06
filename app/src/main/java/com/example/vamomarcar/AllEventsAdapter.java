@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
@@ -47,7 +48,7 @@ public class AllEventsAdapter extends RecyclerView.Adapter {
                  return new MyViewHolder(view);
 
              case 1:
-                 view = layoutInflater.inflate(R.layout.event_item_invite, parent, false);
+                 view = layoutInflater.inflate(R.layout.invite_item, parent, false);
                  return new MyViewHolder(view);
 
          }
@@ -64,19 +65,11 @@ public class AllEventsAdapter extends RecyclerView.Adapter {
         TextView participants;
         TextView local;
 
-        switch (holder.getItemViewType()){
+        switch (getItemViewType(position)){
             case 0:
                 imageView = holder.itemView.findViewById(R.id.imvPhotoEv);
                 imageView.setImageResource(evento.getThumb());
 
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(context, EventoMarcado.class);
-                        context.startActivity(i);
-
-                    }
-                });
 
                 nome = holder.itemView.findViewById(R.id.tvTitle);
                 nome.setText(evento.getTitle());
@@ -90,9 +83,27 @@ public class AllEventsAdapter extends RecyclerView.Adapter {
 
                 if (evento.getStatus() == "marcado") {
                     data.setText(evento.getDataFormatada() + "    " +evento.getHora() );
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent b = new Intent(context, EventoMarcado.class);
+                            context.startActivity(b);
+
+                        }
+                    });
 
                 }
                 else if (evento.getStatus() == "sugestao"){
+
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent b = new Intent(context, SugestaoActivity.class);
+                            context.startActivity(b);
+
+                        }
+                    });
+
                     Calendar prazoSugestao = evento.getPrazoSugestao();
                     Calendar atual = Calendar.getInstance();
                     long prazoS = prazoSugestao.getTimeInMillis() - atual.getTimeInMillis();
@@ -143,30 +154,33 @@ public class AllEventsAdapter extends RecyclerView.Adapter {
 
                 local = holder.itemView.findViewById(R.id.tvLocation);
                 local.setText("Local: " + evento.getLocal());
+                break;
 
             case 1:
-                imageView = holder.itemView.findViewById(R.id.imvPhotoEv);
-                imageView.setImageResource(evento.getThumb());
-
-                nome = holder.itemView.findViewById(R.id.tvTitle);
-                nome.setText(evento.getTitle());
-
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(context, EventoMarcado.class);
-                        context.startActivity(i);
+                        Intent b = new Intent(context, EventoMarcado.class);
+                        context.startActivity(b);
 
                     }
                 });
 
-                desc = holder.itemView.findViewById(R.id.tvDesc);
+                imageView = holder.itemView.findViewById(R.id.imvPhotoEvI);
+                imageView.setImageResource(evento.getThumb());
+
+                nome = holder.itemView.findViewById(R.id.tvTitleI);
+                nome.setText(evento.getTitle());
+
+
+                desc = holder.itemView.findViewById(R.id.tvDescI);
                 desc.setText(evento.getDesc());
 
-                participants = holder.itemView.findViewById(R.id.tvParticipants);
+                participants = holder.itemView.findViewById(R.id.tvParticipantsI);
                 participants.setText(String.valueOf(evento.getTotalParticipantes()) + " Participantes");
-                local = holder.itemView.findViewById(R.id.tvLocation);
+                local = holder.itemView.findViewById(R.id.tvLocationI);
                 local.setText("Local: " + evento.getLocal());
+                break;
 
     }
     }

@@ -1,5 +1,6 @@
 package com.example.vamomarcar;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -7,9 +8,9 @@ public class Topico {
     Calendar data;
     int votos;
 
-    public Topico(Calendar data, int votos) {
+    public Topico(Calendar data) {
         this.data = data;
-        this.votos = votos;
+        this.votos = 0;
     }
 
     public Calendar getData() {
@@ -26,5 +27,17 @@ public class Topico {
 
     public void setVotos(int votos) {
         this.votos = votos;
+    }
+
+    public String getDataFormatada(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd:MM");
+        String data = sdf.format(this.data.getTime());
+        return data;
+    }
+
+    public String getHora(){
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        String hora = sdf.format(this.data.getTime());
+        return hora;
     }
 }

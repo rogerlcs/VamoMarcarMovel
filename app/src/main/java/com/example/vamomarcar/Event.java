@@ -1,6 +1,7 @@
 package com.example.vamomarcar;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -12,7 +13,7 @@ public class Event {
     private int type = 0;
     private List<Usuario> participantes;
     private Date data;
-    private List<Topico> opcoesDataHora;
+    private List<Topico> opcoesDataHora = new ArrayList<>();
     private Calendar prazoVotacao;
     private Calendar prazoSugestao;
     private String local;
@@ -102,7 +103,6 @@ public class Event {
 
     public String getHora(){
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        long hora = this.data.getTime();
         String dataFormatada = sdf.format(data);
         return dataFormatada;
     }

@@ -65,7 +65,6 @@ public class EventoMarcado extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        //Mostrando o icone de share na toolbar;
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.tbevento, menu);
         return true;
