@@ -12,7 +12,7 @@ public class Event {
     private int type = 0;
     private List<Usuario> participantes;
     private Date data;
-    private List<Date> opcoesDataHora;
+    private List<Topico> opcoesDataHora;
     private Calendar prazoVotacao;
     private Calendar prazoSugestao;
     private String local;
@@ -107,12 +107,12 @@ public class Event {
         return dataFormatada;
     }
 
-    public List<Date> getOpcoesDataHora() {
+    public List<Topico> getOpcoesDataHora() {
         return opcoesDataHora;
     }
 
-    public void setOpcoesDataHora(List<Date> opcoesDataHora) {
-        this.opcoesDataHora = opcoesDataHora;
+    public void addOpcoesDataHora(Topico topico) {
+        this.opcoesDataHora.add(topico);
     }
 
     public Calendar getPrazoVotacao() {
