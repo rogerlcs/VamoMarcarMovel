@@ -78,5 +78,16 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()){
+            case R.id.opPerfil:
+                Intent i = new Intent(MainActivity.this,PerfilActivity.class);
+                startActivity(i);
+                return true;
+            default:
+                return onOptionsItemSelected(item);
+        }
+    }
 }

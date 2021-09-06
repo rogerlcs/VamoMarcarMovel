@@ -22,8 +22,7 @@ public class MainActivityViewModel extends ViewModel {
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(2001,1,22);
-        Date data = calendar.getTime();
-        this.user = new Usuario("Flavio",data,"dasdedaed","Serra","Espiríto Santo");
+        this.user = new Usuario("Flavio Henrique",calendar,"Eu posso não estar onde eu quero estar ainda, mas eu me aproximo cada vez mais todos os dias","Serra","Espiríto Santo");
 
 
 
@@ -32,14 +31,11 @@ public class MainActivityViewModel extends ViewModel {
 
         calendar = Calendar.getInstance();
         calendar.set(2002,02,22);
-        data = calendar.getTime();
-        Usuario usuario1 = new Usuario("Felipe",data,"dasdedaed","Serra","Espiríto Santo");
+        Usuario usuario1 = new Usuario("Felipe",calendar,"dasdedaed","Serra","Espiríto Santo");
         calendar.set(1996,05,23);
-        data = calendar.getTime();
-        Usuario usuario2 = new Usuario("Pedro",data,"dasdedaed","Vitória","Espiríto Santo");
+        Usuario usuario2 = new Usuario("Pedro",calendar,"dasdedaed","Vitória","Espiríto Santo");
         calendar.set(2003,04,14);
-        data = calendar.getTime();
-        Usuario usuario3 = new Usuario("Marcelo",data,"dasdedaed","Vila Velhar","Espiríto Santo");
+        Usuario usuario3 = new Usuario("Marcelo",calendar,"dasdedaed","Vila Velha","Espiríto Santo");
         List<Usuario> usuarios = new ArrayList<>();
 
 

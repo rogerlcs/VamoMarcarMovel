@@ -1,12 +1,14 @@
 package com.example.vamomarcar;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Usuario {
     private String nome;
-    private Date dtNasc;
+    private Calendar dtNasc;
     private String bio;
     private String cidade;
     private String estado;
@@ -15,7 +17,7 @@ public class Usuario {
 
 
 
-    public Usuario(String nome, Date dtNasc, String bio, String cidade, String estado) {
+    public Usuario(String nome, Calendar dtNasc, String bio, String cidade, String estado) {
         this.nome = nome;
         this.dtNasc = dtNasc;
         this.bio = bio;
@@ -49,11 +51,11 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public Date getDtNasc() {
+    public Calendar getDtNasc() {
         return dtNasc;
     }
 
-    public void setDtNasc(Date dtNasc) {
+    public void setDtNasc(Calendar dtNasc) {
         this.dtNasc = dtNasc;
     }
 
@@ -80,4 +82,21 @@ public class Usuario {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public String getMonthName(){
+       String monthName = this.dtNasc.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+       return monthName;
+    }
+
+    public String getYear(){
+        String year = String.valueOf(this.dtNasc.get(Calendar.YEAR));
+        return year;
+    }
+
+    public String getDay(){
+        int day = this.dtNasc.get(Calendar.DAY_OF_MONTH);
+        String dayofmonth = String.valueOf(day);
+        return dayofmonth;
+    }
+
 }

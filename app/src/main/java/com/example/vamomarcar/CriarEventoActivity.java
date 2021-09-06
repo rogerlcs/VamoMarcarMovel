@@ -1,5 +1,6 @@
 package com.example.vamomarcar;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
@@ -21,6 +22,9 @@ public class CriarEventoActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.tbCriarEvento);
         setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
 
         MainActivityViewModel vm = new ViewModelProvider(this).get(MainActivityViewModel.class);
