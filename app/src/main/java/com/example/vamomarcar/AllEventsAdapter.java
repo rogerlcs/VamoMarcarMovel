@@ -128,7 +128,7 @@ public class AllEventsAdapter extends RecyclerView.Adapter {
                     };
                     countDownTimer.start();
                 }
-                else {
+                else if(evento.getStatus() == 2) {
 
                     holder.itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -154,7 +154,7 @@ public class AllEventsAdapter extends RecyclerView.Adapter {
 
                         @Override
                         public void onFinish() {
-                            data.setText("");
+                            data.setText("Disponível para marcar!");
 
                         }
                     };

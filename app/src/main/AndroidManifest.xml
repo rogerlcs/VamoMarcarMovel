@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VamoMarcarTest">
-
+        <activity
+            android:name=".ResultActivity"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert">
+        </activity>
         <activity
             android:name=".RegisterActivity"
             android:parentActivityName=".AllEventsActivity">
@@ -61,7 +64,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AllEventsActivity"></activity>
+        <activity android:name=".AllEventsActivity" />
     </application>
 
 </manifest>

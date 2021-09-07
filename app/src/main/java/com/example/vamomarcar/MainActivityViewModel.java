@@ -51,11 +51,14 @@ public class MainActivityViewModel extends ViewModel {
 
 
         Calendar calendar1 = Calendar.getInstance();
-        calendar1.set(2021,8,07,14,00);
+        Calendar calendar2 = Calendar.getInstance();
+        calendar1.set(2021,8,7,16,34);
 
         Calendar prazo1 = calendar1;
-        calendar1.set(2021,8,07,14,30);
-        Calendar prazo2 = calendar1;
+
+        calendar2.set(2021,8,8,16,23);
+
+        Calendar prazo2 = calendar2;
 
 
 
@@ -68,12 +71,16 @@ public class MainActivityViewModel extends ViewModel {
         evento2.setStatus(2);
         Topico topico1 = new Topico(calendar1);
         Topico topico2 = new Topico(calendar1);
+        topico2.setVotos(5);
         Topico topico3 = new Topico(calendar1);
+        topico3.setVotos(3);
         Topico topico4 = new Topico(calendar1);
+        topico4.setVotos(1);
         evento2.addOpcoesDataHora(topico1);
         evento2.addOpcoesDataHora(topico2);
         evento2.addOpcoesDataHora(topico3);
         evento2.addOpcoesDataHora(topico4);
+        evento2.orgarnizarDatas();
 
         this.user.addEvent(evento2);
         Event evento3 = new Event(R.drawable.pedradacebola,"Pedra da Cebola","Ida a Pedra da Cebola",usuarios, prazo1, prazo2, "Pedra da cebola - Vitória");

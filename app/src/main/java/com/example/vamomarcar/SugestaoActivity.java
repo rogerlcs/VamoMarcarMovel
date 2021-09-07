@@ -1,12 +1,14 @@
 package com.example.vamomarcar;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,9 +17,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
@@ -31,6 +36,9 @@ public class SugestaoActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         int position = i.getIntExtra("index",1);
+        FloatingActionButton floatingActionButton = findViewById(R.id.fabMarcar);
+        floatingActionButton.setClickable(false);
+        floatingActionButton.setVisibility(View.INVISIBLE);
 
         Toolbar toolbar = findViewById(R.id.tbEventoSugestao);
         setSupportActionBar(toolbar);
@@ -107,6 +115,8 @@ public class SugestaoActivity extends AppCompatActivity {
                     @Override
                     public void onFinish() {
                         tvCronometro.setText("");
+                        floatingActionButton.setClickable(true);
+                        floatingActionButton.setVisibility(View.VISIBLE);
 
                     }
                 };
@@ -116,6 +126,27 @@ public class SugestaoActivity extends AppCompatActivity {
 
             TextView tvLocalEvS = findViewById(R.id.tvLocalEvS);
             tvLocalEvS.setText("Local: " + evento.getLocal());
+
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(SugestaoActivity.this).setMessage("Deseja Marcar o Evento?").
+                        setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(SugestaoActivity.this, ResultActivity.class);
+                                i.putExtra("index",position);
+                                startActivity(i);
+                            }
+                        }).setNegativeButton("Não",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create().show();
+            }
+        });
 
 
     }

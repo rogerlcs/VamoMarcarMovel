@@ -4,14 +4,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-public class Topico {
+public class Topico implements Comparable<Topico> {
    private Calendar data;
-    private int votos;
+    private int votos = 0;
     private boolean clicou = false;
 
     public Topico(Calendar data) {
         this.data = data;
-        this.votos = 0;
     }
 
     public boolean jaClicou() {
@@ -39,7 +38,7 @@ public class Topico {
     }
 
     public String getDataFormatada(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd:MM");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM");
         String data = sdf.format(this.data.getTime());
         return data;
     }
@@ -48,5 +47,15 @@ public class Topico {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         String hora = sdf.format(this.data.getTime());
         return hora;
+    }
+
+    @Override
+    public int compareTo(Topico o) {
+        if (this.votos > o.getVotos()) {
+            return -1;
+        } if (this.votos < o.getVotos()) {
+            return 1;
+        }
+        return 0;
     }
 }

@@ -3,6 +3,8 @@ package com.example.vamomarcar;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -133,6 +135,22 @@ public class Event {
 
     public int getTotalParticipantes(){
         return participantes.size();
+    }
+
+    public void orgarnizarDatas(){
+        Collections.sort(opcoesDataHora);
+    }
+
+    public List<Topico> getResult(){
+         orgarnizarDatas();
+         if(opcoesDataHora.size() > 2){
+             List<Topico> vencedores = new ArrayList<>();
+             vencedores.add(opcoesDataHora.get(0));
+             vencedores.add(opcoesDataHora.get(1));
+             vencedores.add(opcoesDataHora.get(2));
+             return vencedores;
+         }
+         return opcoesDataHora;
     }
 }
 

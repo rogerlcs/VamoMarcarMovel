@@ -47,7 +47,7 @@ public class SugestaoAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull  RecyclerView.ViewHolder holder, int position) {
-        Topico c = evento.getOpcoesDataHora().get(position);
+        Topico c = this.evento.getOpcoesDataHora().get(position);
         TextView tvData;
         String data = c.getDataFormatada();
         String hora = c.getHora();
@@ -76,7 +76,6 @@ public class SugestaoAdapter extends RecyclerView.Adapter {
                         c.setClicou(true);
                         }
                         tvData.setText(data + ", " + hora + " - " + votos);
-                        c.setVotos(votos);
                     }
                 });
                 break;
