@@ -1,5 +1,7 @@
 package com.example.vamomarcar;
 
+import android.view.View;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -8,10 +10,24 @@ public class Topico implements Comparable<Topico> {
    private Calendar data;
     private int votos = 0;
     private boolean clicou = false;
+    private int visible = View.VISIBLE;
 
     public Topico(Calendar data) {
         this.data = data;
     }
+
+    public boolean isClicou() {
+        return clicou;
+    }
+
+    public int getVisible() {
+        return visible;
+    }
+
+    public void setVisible(int visible) {
+        this.visible = visible;
+    }
+
 
     public boolean jaClicou() {
         return clicou;

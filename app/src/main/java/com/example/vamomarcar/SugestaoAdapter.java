@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
@@ -48,6 +49,8 @@ public class SugestaoAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull  RecyclerView.ViewHolder holder, int position) {
         Topico c = this.evento.getOpcoesDataHora().get(position);
+        MainActivityViewModel vm = new ViewModelProvider(sugestaoActivity).get(MainActivityViewModel.class);
+        Event event = vm.getEventos().get(vm.getEventos().indexOf(this.evento));
         TextView tvData;
         String data = c.getDataFormatada();
         String hora = c.getHora();
@@ -61,6 +64,7 @@ public class SugestaoAdapter extends RecyclerView.Adapter {
                 tvData = holder.itemView.findViewById(R.id.tvDataVotacao);
                 tvData.setText(data + ", " + hora + " - " + votos);
                 ImageButton imageButton = holder.itemView.findViewById(R.id.imbVoto);
+                imageButton.setVisibility(c.getVisible());
                 imageButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -76,6 +80,7 @@ public class SugestaoAdapter extends RecyclerView.Adapter {
                         c.setClicou(true);
                         }
                         tvData.setText(data + ", " + hora + " - " + votos);
+                        event.getOpcoesDataHora().get(position).setVotos(votos);
                     }
                 });
                 break;

@@ -49,6 +49,7 @@ public class SugestaoActivity extends AppCompatActivity {
         MainActivityViewModel vm = new ViewModelProvider(SugestaoActivity.this).get(MainActivityViewModel.class);
         Event evento = vm.getEventos().get(position);
 
+
         SugestaoAdapter sugestaoAdapter = new SugestaoAdapter(evento, SugestaoActivity.this);
         RecyclerView rvDataSugestoes = findViewById(R.id.rvDatasSugestoes);
         rvDataSugestoes.setAdapter(sugestaoAdapter);
@@ -115,6 +116,10 @@ public class SugestaoActivity extends AppCompatActivity {
                     @Override
                     public void onFinish() {
                         tvCronometro.setText("");
+                        for(int i1 =0; i1<evento.getOpcoesDataHora().size();i1++){
+                            Topico topico = evento.getOpcoesDataHora().get(i1);
+                            topico.setVisible(View.INVISIBLE);
+                        }
                         floatingActionButton.setClickable(true);
                         floatingActionButton.setVisibility(View.VISIBLE);
 
