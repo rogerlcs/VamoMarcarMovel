@@ -1,6 +1,7 @@
 package com.example.vamomarcar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,11 +53,29 @@ public class MyEventsAdapter extends RecyclerView.Adapter {
         participants.setText(String.valueOf(evento.getTotalParticipantes()) + " Participantes");
         TextView data = holder.itemView.findViewById(R.id.tvDate);
 
-        if (evento.getStatus() == "marcado") {
+        if (evento.getStatus() == 0) {
             data.setText(evento.getDataFormatada() + "    " +evento.getHora() );
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent b = new Intent(context, EventoMarcado.class);
+                    b.putExtra("index",position);
+                    context.startActivity(b);
+
+                }
+            });
 
         }
-        else if (evento.getStatus() == "sugestao"){
+        else if (evento.getStatus() == 1){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent b = new Intent(context, SugestaoActivity.class);
+                    b.putExtra("index",position);
+                    context.startActivity(b);
+
+                }
+            });
             Calendar prazoSugestao = evento.getPrazoSugestao();
             Calendar atual = Calendar.getInstance();
             long prazoS = prazoSugestao.getTimeInMillis() - atual.getTimeInMillis();
@@ -78,6 +97,15 @@ public class MyEventsAdapter extends RecyclerView.Adapter {
             countDownTimer.start();
         }
         else {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent b = new Intent(context, SugestaoActivity.class);
+                    b.putExtra("index",position);
+                    context.startActivity(b);
+
+                }
+            });
             Calendar prazoVotacao = evento.getPrazoVotacao();
             Calendar atual = Calendar.getInstance();
             long prazoV = prazoVotacao.getTimeInMillis() - atual.getTimeInMillis();

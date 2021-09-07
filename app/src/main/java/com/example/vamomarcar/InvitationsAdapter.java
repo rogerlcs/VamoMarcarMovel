@@ -1,6 +1,7 @@
 package com.example.vamomarcar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +17,12 @@ public class InvitationsAdapter extends RecyclerView.Adapter {
 
     Context context;
     List<Event> eventos;
+    List<Integer> eventosindex;
 
-    public InvitationsAdapter(Context context, List<Event> eventos){
+    public InvitationsAdapter(Context context, List<Event> eventos, List<Integer> eventosindex ){
         this.context = context;
         this.eventos = eventos;
+        this.eventosindex = eventosindex;
     }
 
 
@@ -33,7 +36,7 @@ public class InvitationsAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull  RecyclerView.ViewHolder holder, int position) {
-        Event evento = eventos.get(0);
+        Event evento = eventos.get(position);
         ImageView imageView = holder.itemView.findViewById(R.id.imvPhotoEvI);
         imageView.setImageResource(evento.getThumb());
 
@@ -50,6 +53,31 @@ public class InvitationsAdapter extends RecyclerView.Adapter {
 
         TextView local = holder.itemView.findViewById(R.id.tvLocationI);
         local.setText("Local: " + evento.getLocal());
+
+
+        if(evento.getStatus() == 0) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent b = new Intent(context, EventoMarcado.class);
+                    b.putExtra("index",eventosindex.get(position));
+                    context.startActivity(b);
+
+                }
+            });
+        }
+
+        else if (evento.getStatus() == 1 || evento.getStatus() == 2){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent b = new Intent(context, SugestaoActivity.class);
+                    b.putExtra("index",eventosindex.get(position));
+                    context.startActivity(b);
+
+                }
+            });
+        }
     }
 
     @Override

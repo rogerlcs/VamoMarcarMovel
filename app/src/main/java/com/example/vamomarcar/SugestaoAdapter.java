@@ -1,8 +1,10 @@
 package com.example.vamomarcar;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,22 +23,65 @@ public class SugestaoAdapter extends RecyclerView.Adapter {
         this.sugestaoActivity = sugestaoActivity;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return evento.getStatus();
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(this.sugestaoActivity);
-        View v = layoutInflater.inflate(R.layout.sugestao_item, parent, false);
-        return new MyViewHolder(v);
+        View v;
+        switch (viewType){
+            case 1:
+                v = layoutInflater.inflate(R.layout.sugestao_item, parent, false);
+                return new MyViewHolder(v);
+            case 2:
+                v = layoutInflater.inflate(R.layout.votacao_item, parent, false);
+                return new MyViewHolder(v);
+        }
+        return null;
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull  RecyclerView.ViewHolder holder, int position) {
         Topico c = evento.getOpcoesDataHora().get(position);
-        TextView tvData = holder.itemView.findViewById(R.id.tvData);
+        TextView tvData;
         String data = c.getDataFormatada();
         String hora = c.getHora();
-        tvData.setText(data + ", "+ hora);
+        switch (holder.getItemViewType()) {
+            case 1:
+                tvData = holder.itemView.findViewById(R.id.tvData);
+                tvData.setText(data + ", " + hora);
+                break;
+            case 2:
+                int votos = c.getVotos();
+                tvData = holder.itemView.findViewById(R.id.tvDataVotacao);
+                tvData.setText(data + ", " + hora + " - " + votos);
+                ImageButton imageButton = holder.itemView.findViewById(R.id.imbVoto);
+                imageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int votos = c.getVotos();
+                        if(c.jaClicou()){
+                            votos --;
+                            imageButton.setColorFilter(Color.argb(255, 133, 132, 132));
+                            c.setClicou(false);
+                        }
+                        else {
+                        votos++;
+                        imageButton.setColorFilter(Color.argb(255, 0, 0, 0));
+                        c.setClicou(true);
+                        }
+                        tvData.setText(data + ", " + hora + " - " + votos);
+                        c.setVotos(votos);
+                    }
+                });
+                break;
 
+        }
     }
 
     @Override

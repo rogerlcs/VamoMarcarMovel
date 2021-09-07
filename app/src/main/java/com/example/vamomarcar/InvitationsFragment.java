@@ -59,14 +59,18 @@ public class InvitationsFragment extends Fragment {
         MainActivityViewModel mainActivityViewModel = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
         List<Event> eventos = mainActivityViewModel.getEventos();
         List<Event> invitationsEvents = new ArrayList<>();
+        List<Integer> eventosindex = new ArrayList<>();
+        int index = 0;
 
         for(Event e : eventos){
             if(e.getType() == 1){
                 invitationsEvents.add(e);
+                eventosindex.add(index);
             }
+            index++;
         }
 
-        InvitationsAdapter InvitationsAdapter = new InvitationsAdapter(getContext(),invitationsEvents);
+        InvitationsAdapter InvitationsAdapter = new InvitationsAdapter(getContext(),invitationsEvents, eventosindex);
 
         RecyclerView rvInivite = getView().findViewById(R.id.rvInivite);
         rvInivite.setAdapter(InvitationsAdapter);

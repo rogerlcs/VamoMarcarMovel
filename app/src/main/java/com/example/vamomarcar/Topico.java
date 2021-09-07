@@ -5,12 +5,21 @@ import java.util.Calendar;
 import java.util.List;
 
 public class Topico {
-    Calendar data;
-    int votos;
+   private Calendar data;
+    private int votos;
+    private boolean clicou = false;
 
     public Topico(Calendar data) {
         this.data = data;
         this.votos = 0;
+    }
+
+    public boolean jaClicou() {
+        return clicou;
+    }
+
+    public void setClicou(boolean clicou) {
+        this.clicou = clicou;
     }
 
     public Calendar getData() {

@@ -61,24 +61,33 @@ public class MainActivityViewModel extends ViewModel {
 
         Event evento1 = new Event(R.drawable.parque,"Parque da Cidade","Ida ao parque da cidade",usuarios, prazo1, prazo2,"Parque da Cidade");
         evento1.setData(calendar1.getTime());
-        evento1.setStatus("marcado");
+        evento1.setStatus(0);
         this.user.addEvent(evento1);
+
         Event evento2 = new Event(R.drawable.shopping,"Shopping","Ida ao Shopping",usuarios, prazo1, prazo2, "Shopping Vitória");
-        evento2.setStatus("votacao");
-        this.user.addEvent(evento2);
-        Event evento3 = new Event(R.drawable.pedradacebola,"Pedra da Cebola","Ida a Pedra da Cebola",usuarios, prazo1, prazo2, "Pedra da cebola - Vitória");
+        evento2.setStatus(2);
         Topico topico1 = new Topico(calendar1);
         Topico topico2 = new Topico(calendar1);
         Topico topico3 = new Topico(calendar1);
         Topico topico4 = new Topico(calendar1);
+        evento2.addOpcoesDataHora(topico1);
+        evento2.addOpcoesDataHora(topico2);
+        evento2.addOpcoesDataHora(topico3);
+        evento2.addOpcoesDataHora(topico4);
+
+        this.user.addEvent(evento2);
+        Event evento3 = new Event(R.drawable.pedradacebola,"Pedra da Cebola","Ida a Pedra da Cebola",usuarios, prazo1, prazo2, "Pedra da cebola - Vitória");
+        evento3.setStatus(1);
+
         evento3.addOpcoesDataHora(topico1);
         evento3.addOpcoesDataHora(topico2);
         evento3.addOpcoesDataHora(topico3);
         evento3.addOpcoesDataHora(topico4);
 
-        Event evento4 = new Event(R.drawable.praia,"Praia","Ida a praia",usuarios, prazo1, prazo2, "Praia de Camburia");
+        Event evento4 = new Event(R.drawable.praia,"Praia","Ida a praia",usuarios, prazo1, prazo2, "Praia de Camburi");
         evento4.setData(calendar1.getTime());
         evento4.setType(1);
+        evento4.setStatus(0);
 
         eventos.add(evento1);
         eventos.add(evento2);

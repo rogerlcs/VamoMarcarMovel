@@ -17,7 +17,7 @@ public class Event {
     private Calendar prazoVotacao;
     private Calendar prazoSugestao;
     private String local;
-    private String status = "sugestao";
+    private int status;
 
 
 
@@ -30,11 +30,11 @@ public class Event {
         this.type = type;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

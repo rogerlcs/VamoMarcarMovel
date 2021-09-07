@@ -81,24 +81,26 @@ public class AllEventsAdapter extends RecyclerView.Adapter {
                 participants.setText(String.valueOf(evento.getTotalParticipantes()) + " Participantes");
                 TextView data = holder.itemView.findViewById(R.id.tvDate);
 
-                if (evento.getStatus() == "marcado") {
+                if (evento.getStatus() == 0) {
                     data.setText(evento.getDataFormatada() + "    " +evento.getHora() );
                     holder.itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Intent b = new Intent(context, EventoMarcado.class);
+                            b.putExtra("index",position);
                             context.startActivity(b);
 
                         }
                     });
 
                 }
-                else if (evento.getStatus() == "sugestao"){
+                else if (evento.getStatus() == 1){
 
                     holder.itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Intent b = new Intent(context, SugestaoActivity.class);
+                            b.putExtra("index",position);
                             context.startActivity(b);
 
                         }
@@ -127,6 +129,17 @@ public class AllEventsAdapter extends RecyclerView.Adapter {
                     countDownTimer.start();
                 }
                 else {
+
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(context, SugestaoActivity.class);
+                            i.putExtra("index",position);
+                            context.startActivity(i);
+
+                        }
+                    });
+
                     Calendar prazoVotacao = evento.getPrazoVotacao();
                     Calendar atual = Calendar.getInstance();
                     long prazoV = prazoVotacao.getTimeInMillis() - atual.getTimeInMillis();
@@ -157,14 +170,30 @@ public class AllEventsAdapter extends RecyclerView.Adapter {
                 break;
 
             case 1:
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent b = new Intent(context, EventoMarcado.class);
-                        context.startActivity(b);
 
-                    }
-                });
+                if(evento.getStatus() == 0) {
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent b = new Intent(context, EventoMarcado.class);
+                            b.putExtra("index",position);
+                            context.startActivity(b);
+
+                        }
+                    });
+                }
+
+                else if (evento.getStatus() == 1 || evento.getStatus() == 2){
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent b = new Intent(context, SugestaoActivity.class);
+                            b.putExtra("index",position);
+                            context.startActivity(b);
+
+                        }
+                    });
+                }
 
                 imageView = holder.itemView.findViewById(R.id.imvPhotoEvI);
                 imageView.setImageResource(evento.getThumb());

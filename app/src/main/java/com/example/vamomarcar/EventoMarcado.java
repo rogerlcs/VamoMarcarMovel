@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,8 +33,11 @@ public class EventoMarcado extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        Intent i = getIntent();
+        int position = i.getIntExtra("index", 0);
+
         MainActivityViewModel mainActivityViewModel = new ViewModelProvider(EventoMarcado.this).get(MainActivityViewModel.class);
-        Event evento = mainActivityViewModel.getEventos().get(0);
+        Event evento = mainActivityViewModel.getEventos().get(position);
 
         EventoMarcadoAdapter eventoMarcadoAdapter = new EventoMarcadoAdapter(this, evento);
 

@@ -7,12 +7,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +29,9 @@ public class SugestaoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sugestao);
 
+        Intent i = getIntent();
+        int position = i.getIntExtra("index",1);
+
         Toolbar toolbar = findViewById(R.id.tbEventoSugestao);
         setSupportActionBar(toolbar);
 
@@ -33,7 +39,7 @@ public class SugestaoActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         MainActivityViewModel vm = new ViewModelProvider(SugestaoActivity.this).get(MainActivityViewModel.class);
-        Event evento = vm.getEventos().get(2);
+        Event evento = vm.getEventos().get(position);
 
         SugestaoAdapter sugestaoAdapter = new SugestaoAdapter(evento, SugestaoActivity.this);
         RecyclerView rvDataSugestoes = findViewById(R.id.rvDatasSugestoes);
@@ -55,32 +61,61 @@ public class SugestaoActivity extends AppCompatActivity {
         TextView tvDescEvS = findViewById(R.id.tvDescEvS);
         tvDescEvS.setText(evento.getDesc());
 
-        Calendar prazoSugestao = evento.getPrazoSugestao();
+        ImageButton imageButton = findViewById(R.id.imButton);
+
+
         Calendar atual = Calendar.getInstance();
 
         TextView tvCronometro = findViewById(R.id.tvCronometro);
+        CountDownTimer countDownTimer;
 
-        long prazoS = prazoSugestao.getTimeInMillis() - atual.getTimeInMillis();
-        CountDownTimer countDownTimer = new CountDownTimer(prazoS,1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                long hora = TimeUnit.MILLISECONDS.toHours(millisUntilFinished);
-                long min = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished - TimeUnit.HOURS.toMillis(hora));
-                long sec = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished - TimeUnit.HOURS.toMillis(hora) - TimeUnit.MINUTES.toMillis(min));
-                tvCronometro.setText("Sugestão: " + hora + ":" + min + ":" + sec);
-            }
+        switch (evento.getStatus()) {
+            case 1:
+                Calendar prazoSugestao = evento.getPrazoSugestao();
+                long prazoS = prazoSugestao.getTimeInMillis() - atual.getTimeInMillis();
+                 countDownTimer = new CountDownTimer(prazoS, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        long hora = TimeUnit.MILLISECONDS.toHours(millisUntilFinished);
+                        long min = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished - TimeUnit.HOURS.toMillis(hora));
+                        long sec = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished - TimeUnit.HOURS.toMillis(hora) - TimeUnit.MINUTES.toMillis(min));
+                        tvCronometro.setText("Sugestão: " + hora + ":" + min + ":" + sec);
+                    }
 
-            @Override
-            public void onFinish() {
-                tvCronometro.setText("");
+                    @Override
+                    public void onFinish() {
+                        tvCronometro.setText("");
 
-            }
-        };
-        countDownTimer.start();
+                    }
+                };
+                countDownTimer.start();
+                break;
+            case 2:
+                imageButton.setClickable(false);
+                imageButton.setColorFilter(Color.argb(0,0,0,0));
+                Calendar prazoVotacao = evento.getPrazoVotacao();
+                long prazoV = prazoVotacao.getTimeInMillis() - atual.getTimeInMillis();
+                countDownTimer = new CountDownTimer(prazoV,1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        long hora = TimeUnit.MILLISECONDS.toHours(millisUntilFinished);
+                        long min = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished - TimeUnit.HOURS.toMillis(hora));
+                        long sec = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished - TimeUnit.HOURS.toMillis(hora) - TimeUnit.MINUTES.toMillis(min));
+                        tvCronometro.setText("Votação: " + hora + ":" + min + ":" + sec);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        tvCronometro.setText("");
+
+                    }
+                };
+                countDownTimer.start();
+        }
 
 
-        TextView tvLocalEvS = findViewById(R.id.tvLocalEvS);
-        tvLocalEvS.setText("Local: " + evento.getLocal());
+            TextView tvLocalEvS = findViewById(R.id.tvLocalEvS);
+            tvLocalEvS.setText("Local: " + evento.getLocal());
 
 
     }
