@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -40,6 +43,18 @@ public class PerfilActivity extends AppCompatActivity {
 
         TextView tvLocalPerfil = findViewById(R.id.tvLocalPerfil);
         tvLocalPerfil.setText(u.getCidade() + " - " + u.getEstado());
+
+        //Logout
+        Button btnLogout = findViewById(R.id.btnLogout);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.setLogin(PerfilActivity.this, "");
+                Config.setPassword(PerfilActivity.this, "");
+                Intent i = new Intent(PerfilActivity.this, LoginActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
 }
