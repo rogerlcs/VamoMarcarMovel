@@ -10,7 +10,7 @@
         android:id="@+id/tvTitleLogin2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="64dp"
         android:text="@string/app_name"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +21,7 @@
         android:id="@+id/etNewLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
         android:hint="Login"
         android:inputType="textPersonName"
@@ -38,8 +38,9 @@
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNewLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
 
     <EditText
         android:id="@+id/etNewPasswordCheck"
@@ -55,11 +56,56 @@
 
     <Button
         android:id="@+id/btnRegister"
-        android:layout_width="150dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Registrar"
+        android:text="Cadastrar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNewPasswordCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/etState" />
+
+    <EditText
+        android:id="@+id/etCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Cidade"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDate"
+        tools:layout_editor_absoluteX="101dp" />
+
+    <EditText
+        android:id="@+id/etState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Estado"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/etCity"
+        tools:layout_editor_absoluteX="102dp" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        app:layout_constraintTop_toBottomOf="@+id/etNewLogin"
+        tools:layout_editor_absoluteX="101dp" />
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Data de Nascimento"
+        android:inputType="date"
+        app:layout_constraintTop_toBottomOf="@+id/etNewPasswordCheck"
+        tools:layout_editor_absoluteX="102dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

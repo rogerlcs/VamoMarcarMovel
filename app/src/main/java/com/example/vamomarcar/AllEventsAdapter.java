@@ -154,7 +154,7 @@ public class AllEventsAdapter extends RecyclerView.Adapter {
 
                         @Override
                         public void onFinish() {
-                            data.setText("Disponível para marcar!");
+                            data.setText("Votação Finalizada!");
 
                         }
                     };
