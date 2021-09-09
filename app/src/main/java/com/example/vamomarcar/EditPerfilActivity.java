@@ -1,5 +1,6 @@
 package com.example.vamomarcar;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,6 +16,8 @@ public class EditPerfilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_perfil);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         Button btnEditPerfil = findViewById(R.id.btnEditPerfil);
         btnEditPerfil.setOnClickListener(new View.OnClickListener() {
