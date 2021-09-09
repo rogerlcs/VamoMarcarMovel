@@ -58,7 +58,7 @@
         android:id="@+id/btnRegister"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="Cadastrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -73,8 +73,9 @@
         android:ems="10"
         android:hint="Cidade"
         android:inputType="textPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate"
-        tools:layout_editor_absoluteX="101dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
 
     <EditText
         android:id="@+id/etState"
@@ -84,8 +85,9 @@
         android:ems="10"
         android:hint="Estado"
         android:inputType="textPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/etCity"
-        tools:layout_editor_absoluteX="102dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCity" />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
@@ -95,8 +97,9 @@
         android:ems="10"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
-        app:layout_constraintTop_toBottomOf="@+id/etNewLogin"
-        tools:layout_editor_absoluteX="101dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNewLogin" />
 
     <EditText
         android:id="@+id/editTextDate"
@@ -106,6 +109,7 @@
         android:ems="10"
         android:hint="Data de Nascimento"
         android:inputType="date"
-        app:layout_constraintTop_toBottomOf="@+id/etNewPasswordCheck"
-        tools:layout_editor_absoluteX="102dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNewPasswordCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

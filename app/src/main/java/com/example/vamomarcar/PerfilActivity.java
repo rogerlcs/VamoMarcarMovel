@@ -9,9 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
-
-import java.util.Calendar;
 
 public class PerfilActivity extends AppCompatActivity {
 
@@ -43,6 +42,15 @@ public class PerfilActivity extends AppCompatActivity {
 
         TextView tvLocalPerfil = findViewById(R.id.tvLocalPerfil);
         tvLocalPerfil.setText(u.getCidade() + " - " + u.getEstado());
+
+        ImageButton imbEditPerfil = findViewById(R.id.imbEditPerfil);
+        imbEditPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PerfilActivity.this, EditPerfilActivity.class);
+                startActivity(i);
+            }
+        });
 
         //Logout
         Button btnLogout = findViewById(R.id.btnLogout);
