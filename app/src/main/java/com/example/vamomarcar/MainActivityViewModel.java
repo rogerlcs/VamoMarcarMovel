@@ -52,11 +52,11 @@ public class MainActivityViewModel extends ViewModel {
 
         Calendar calendar1 = Calendar.getInstance();
         Calendar calendar2 = Calendar.getInstance();
-        calendar1.set(2021,8,7,17,32);
+        calendar1.set(2021,8,10,17,32);
 
         Calendar prazo1 = calendar1;
 
-        calendar2.set(2021,8,8,17,23);
+        calendar2.set(2021,8,10,17,23);
 
         Calendar prazo2 = calendar2;
 
